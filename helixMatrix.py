@@ -73,7 +73,24 @@ def helix_iteration(N, A):
         num = num + 1
         stepNow = stepNow + 1
 
+#by iteration 2
+def helix_iteration2(N, A):
+    time = 0
+    start = 1
+    while time < N:
+        size = N - 1 - time
+        if size == 0:
+            A[time/2][time/2] = start
+        for i in range(size):
+            A[time/2][time/2 + i] = start + i
+            A[time/2 + i][N - 1 - time/2] = start + size + i
+            A[N - 1 - time/2][N - 1 - time/2 - i] = start + 2 * size + i
+            A[N - 1 - time/2 - i][time/2] = start + 3 * size + i
+        start = start + 4 * size
+        time = time + 2
+
+
 outA = [[0 for i in range(N)] for j in range(N)]
-helix_iteration(N, outA)
+helix_iteration2(N, outA)
 #helix_recursion(1, N, 0, outA)
 print outA
